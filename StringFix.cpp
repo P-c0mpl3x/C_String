@@ -3,26 +3,43 @@
 #include<string.h>
 void chuanHoa(char a[])
 {
-	int l = strlen(a);
-	while (a[0] == ' ')
+    int l = strlen(a);
+    while (a[0] == ' ') 
+    {
+        for (int i = 0; i < l; i++) 
 	{
-		strcpy_s(&a[0], l, &a[1]);
-		l--;
-	}
-	for (int i = 0; i < l; i++)
+            a[i] = a[i + 1];
+        }
+        l--;
+    }
+    for (int i = 0; i < l - 1; i++)
+    {
+        if (a[i] == ' ' && a[i + 1] == ' ')
 	{
-		if (a[i] == ' ' && a[i + 1] == ' ')
-		{
-			strcpy_s(&a[i],l, &a[i + 1]);
-			i--;
-			l--;
-		}
-	}
-	while (a[l - 1] == ' ')
+            for (int j = i; j < l; j++)
+	    {
+                a[j] = a[j + 1];
+            }
+            l--;
+            i--;
+        }
+    }
+    while (a[l - 1] == ' ')
+    {
+        a[l - 1] = '\0';
+        l--;
+    }
+    if (a[0] >= 'a' && a[0] <= 'z')
+    {
+        a[0] = a[0] - 32;
+    }
+    for (int i = 1; i < l; i++)
+    {
+        if (a[i] >= 'A' && a[i] <= 'Z')
 	{
-		strcpy_s(&a[l - 1],l, &a[l - 2]);
-		l--;
-	}
+            a[i] = a[i] + 32;
+        }
+    }
 }
 void main()
 {
